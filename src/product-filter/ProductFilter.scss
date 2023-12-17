@@ -1,0 +1,49 @@
+.ProductFilter {
+
+    display: flex;
+    padding: .8rem 0;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+
+    .input-wrapper {
+
+        .free-text {
+            width: 400px;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: none;
+
+        }
+    }
+
+    .date-time-picker {
+        margin-left: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .input-group {
+
+
+
+            input {
+                width: 400px;
+                padding: 0.8rem;
+                border-radius: 5px;
+                border: none;
+            }
+        }
+    }
+
+    .react-datepicker__input-container {
+        input {
+            border: none;
+            padding: 0.8rem;
+            border-radius: 5px;
+            width: 400px;
+
+        }
+    }
+
+}

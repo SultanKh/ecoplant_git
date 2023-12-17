@@ -1,0 +1,15 @@
+{
+  "name": "mig2",
+  "version": "1.0.0",
+  "description": "to load csv file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sultan Kh",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "pg": "^8.11.3"
+  }
+}

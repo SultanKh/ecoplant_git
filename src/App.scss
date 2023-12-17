@@ -1,0 +1,97 @@
+.App {
+  text-align: center;
+  background: #eef3f9;
+  height: 100%;
+
+  .App-header {
+    height: 10vh;
+    background-color: #1b2845;
+    background-image: linear-gradient(315deg, #1b2845 0%, #274060 74%);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span {
+      font-size: 30px;
+      text-align: left;
+      padding: 2rem;
+      color: #fff;
+    }
+    a{
+      text-decoration: unset;
+      color: #f8f8f8;
+    }
+
+  }
+
+  .first-to-see {
+    background-color: #142d4a;
+    background-image: url(https://uploads-ssl.webflow.com/61a7855…/61a7855…_Homepage_BG-min.png);
+    padding: 1.2rem;
+    margin: 0.8rem;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    img {}
+
+    .testemonial {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      gap: .2rem;
+      float: left;
+      clear: left;
+      color: #fff;
+      letter-spacing: .5px;
+      margin-bottom: 5px;
+      font-family: Heebo, sans-serif;
+      line-height: 30px;
+
+
+      .title {
+        font-size: 25px;
+        font-weight: 400;
+      }
+
+      .subtitle {
+        font-weight: 600;
+        font-size: 16px;
+        color: #90bc47;
+      }
+
+      p {
+        text-align: left;
+        color: #fff;
+      }
+
+
+    }
+  }
+
+
+  .wrapper {
+
+    display: grid;
+    gap: .5rem;
+    padding: 0.8rem;
+
+
+  }
+
+  footer {
+    p {
+      color: #9e9b9b;
+      padding: .2rem;
+      margin: unset;
+    }
+  }
+
+}
+
+@media (max-width: 800px) {
+  .App {
+    width: fit-content;
+  }
+}
