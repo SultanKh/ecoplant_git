@@ -68,7 +68,7 @@ export default function TableDisplay({ searchText, dateRange }) {
         if (sortMethod === COLUMNS[2]) //pressure
             return filteredSection.sort((a, b) => ((+a.pressure) - (+b.pressure)) * asc)
 
-        if (sortMethod === COLUMNS[4]) //temp
+        if (sortMethod === COLUMNS[3]) //temp
             return filteredSection.sort((a, b) => ((+a.temp) - (+b.temp)) * asc)
 
         return filteredSection
