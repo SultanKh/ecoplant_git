@@ -6,9 +6,20 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 
+
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 // Middleware to parse JSON data
 app.use(bodyParser.json());
 app.use(cors());
+
+
 
 
 const pgConfig = {

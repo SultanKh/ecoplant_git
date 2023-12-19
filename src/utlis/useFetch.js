@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export const URL = 'http://localhost:3000'
 
 
-export default function useFetch(URL, endpoint, page, limit) {
+export default function useFetch(URL = URL, endpoint, page, limit) {
     const [data, setData] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);

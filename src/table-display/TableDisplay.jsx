@@ -3,6 +3,8 @@ import ReactPaginate from "react-paginate";
 import './TableDisplay.scss'
 import { getDataEcoPlants } from "../utlis/api";
 import SortArrow from "../sort-arrow/SortArrow";
+import useFetch, { URL } from "../utlis/useFetch";
+import EcoLoading from "../eco-loading/EcoLoading";
 export default function TableDisplay({ searchText, dateRange }) {
 
     const [ecoplantData, setEcoplantData] = useState([])
@@ -13,41 +15,39 @@ export default function TableDisplay({ searchText, dateRange }) {
     const [sortAsc, setSortAsc] = useState(true)
 
 
-
-
-
     const LIMIT = 20
     const COLUMNS = ['TimesStamp', 'KWH', 'Pressure', 'Temp']
 
-    useEffect(() => {
-        setRowLoading(true)
-        getDataEcoPlants(currentPage, LIMIT).then(results => {
-            setEcoplantTotal(results.total)
-            setEcoplantData(results.rows)
-        })
-            .catch(err => console.log('an error in calling API', err))
-            .finally(() => setRowLoading(false))
-    }, [])
+    // useEffect(() => {
+    //     setRowLoading(true)
+    //     getDataEcoPlants(currentPage, LIMIT).then(results => {
+    //         setEcoplantTotal(results.total)
+    //         setEcoplantData(results.rows)
+    //     })
+    //         .catch(err => console.log('an error in calling API', err))
+    //         .finally(() => setRowLoading(false))
+    // }, [])
 
+    const {data, error, loading} = useFetch(URL, '/api/data', currentPage, LIMIT)
 
-
-    const paginate = ({ selected }) => {
+    const paginate = ({ selected, event }) => {
         setCurrentPage(selected + 1);
-        setRowLoading(true)
-        getDataEcoPlants(selected + 1, LIMIT).then(results => {
+        event.preventDefault()
+        // setRowLoading(true)  
+        // getDataEcoPlants(selected + 1, LIMIT).then(results => {
 
-            setEcoplantTotal(results.total)
-            setEcoplantData(results.rows)
-        })
-            .catch(err => console.log('an error in calling API', err))
-            .finally(() => setRowLoading(false))
+        //     setEcoplantTotal(results.total)
+        //     setEcoplantData(results.rows)
+        // })
+        //     .catch(err => console.log('an error in calling API', err))
+        //     .finally(() => setRowLoading(false))
     };
 
 
 
 
     const [startDate, endDate] = dateRange;
-    let filterRowsDate = startDate && endDate ? ecoplantData.filter(item => (new Date(item.time_stamp) >= startDate) && (new Date(item.time_stamp) < endDate)) : ecoplantData
+    let filterRowsDate = startDate && endDate ? data?.rows.filter(item => (new Date(item.time_stamp) >= startDate) && (new Date(item.time_stamp) < endDate)) : data?.rows
 
 
     const filteredSection = useMemo(() => {
@@ -78,7 +78,7 @@ export default function TableDisplay({ searchText, dateRange }) {
 
 
     return <div className="table-display">
-        {rowLoading ? <h1>Loading</h1> :
+        {loading ? <EcoLoading /> :
             currentPosts && currentPosts.length > 0 ? <>
                 <table>
                     <thead>
@@ -117,8 +117,10 @@ export default function TableDisplay({ searchText, dateRange }) {
         }
 
         {currentPosts && currentPosts.length ? <ReactPaginate
-            onPageChange={paginate}
-            pageCount={Math.ceil(ecoPlantTotal)}
+            // onPageChange={paginate}
+            onClick={paginate}
+            // pageCount={Math.ceil(ecoPlantTotal)}
+            pageCount={Math.ceil(data?.total)}
             previousLabel={'Prev'}
             nextLabel={'Next'}
             containerClassName={'pagination'}
